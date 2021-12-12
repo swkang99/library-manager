@@ -1,3 +1,8 @@
+package Dialog;
+
+import Main.Const;
+import Main.Database;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

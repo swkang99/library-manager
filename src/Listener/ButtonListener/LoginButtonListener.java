@@ -1,3 +1,9 @@
+package Listener.ButtonListener;
+
+import Dialog.MemberJoinDialog;
+import Main.*;
+import Windows.*;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

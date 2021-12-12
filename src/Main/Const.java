@@ -1,3 +1,4 @@
+package Main;
 
 public class Const {
     public static final String OK = "Ok";

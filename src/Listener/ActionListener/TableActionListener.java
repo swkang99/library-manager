@@ -1,3 +1,8 @@
+package Listener.ActionListener;
+
+import Windows.MainFrame;
+import Main.Database;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -16,7 +21,13 @@ public class TableActionListener implements ActionListener {
     private void createTable() {
         String[] header = {};
         System.out.println("create table for members and booklist");
-        DefaultTableModel model = new DefaultTableModel(header,0);
+        DefaultTableModel model = new DefaultTableModel(header,0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // all cells false: not editable
+                return false;
+            }
+        };
         table = new JTable(model);
         JScrollPane scroll = new JScrollPane(table);
         mainWindow.add(scroll);

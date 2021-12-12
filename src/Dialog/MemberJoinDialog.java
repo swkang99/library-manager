@@ -1,3 +1,8 @@
+package Dialog;
+
+import Main.Const;
+import Main.Database;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;

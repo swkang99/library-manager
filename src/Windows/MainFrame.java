@@ -1,3 +1,10 @@
+package Windows;
+
+import Listener.ActionListener.AddBookActionListener;
+import Listener.ActionListener.LogInActionListener;
+import Listener.ActionListener.LogOutActionListener;
+import Listener.ActionListener.TableActionListener;
+
 import javax.swing.*;
 
 public class MainFrame extends JFrame {
@@ -30,8 +37,14 @@ public class MainFrame extends JFrame {
         JMenu bookMenu = new JMenu("Book");
         JMenuItem addbookMenuItem = new JMenuItem("Add Book");
         JMenuItem booklistMenuItem = new JMenuItem("Book List");
+        JMenuItem lendMenuItem = new JMenuItem("Lend");
+        JMenuItem returnMenuItem = new JMenuItem("Return");
+        JMenuItem holdMenuItem = new JMenuItem("Hold");
         bookMenu.add(addbookMenuItem);
         bookMenu.add(booklistMenuItem);
+        bookMenu.add(lendMenuItem);
+        bookMenu.add(returnMenuItem);
+        bookMenu.add(holdMenuItem);
 
         mb.add(personMenu);
         mb.add(memberMenu);
