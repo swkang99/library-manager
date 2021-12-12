@@ -1,4 +1,4 @@
-package Listener.ActionListener;
+package Listener.MenuListener;
 
 import Windows.MainFrame;
 import Windows.LoginWindows;
@@ -7,9 +7,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LogOutActionListener implements ActionListener {
+public class LogOutMenuListener implements ActionListener {
     private MainFrame mainWindow;
-    public LogOutActionListener(MainFrame window) {
+    public LogOutMenuListener(MainFrame window) {
         this.mainWindow = window;
     }
     private void closeWindow() {

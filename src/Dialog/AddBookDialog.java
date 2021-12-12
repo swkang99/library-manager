@@ -145,7 +145,7 @@ public class AddBookDialog extends JDialog implements ActionListener {
                 final Boolean status = statusCheckBox.isSelected();
                 final String regist_date = regist_dateTextField.getText();
 
-                if (Database.getInstance().checkExistBook(id)) {
+                if (Database.getInstance().checkExistBookById(id)) {
                     JOptionPane.showMessageDialog(null, "The Book is already exist");
                     idTextField.requestFocus();
                 } else {

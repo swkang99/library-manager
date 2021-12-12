@@ -1,13 +1,13 @@
-package Listener.ActionListener;
+package Listener.MenuListener;
 
 import Windows.LoginWindows;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LogInActionListener implements ActionListener {
+public class LogInMenuListener implements ActionListener {
 
-    public LogInActionListener() {
+    public LogInMenuListener() {
     }
 
     @Override

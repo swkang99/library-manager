@@ -113,11 +113,25 @@ public class Database {
         return retValue;
     }
 
-    public boolean checkExistBook(int id) {
+    public boolean checkExistBookById(int id) {
         boolean retValue = false;
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM book WHERE id='"+id+"'");
+            if(rs.getInt(1) >= 1)
+                retValue = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return retValue;
+    }
+
+    public boolean checkExistBookByTitle(String title) {
+        boolean retValue = false;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM book WHERE title='"+title+"'");
             if(rs.getInt(1) >= 1)
                 retValue = true;
         } catch (SQLException e) {
@@ -195,6 +209,38 @@ public class Database {
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isCanLend(String title) {
+        boolean retValue = false;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT status FROM book WHERE title='"+title+"'");
+            while (rs.next()) {
+                if (rs.getString("status").equals("false")) {
+                    retValue = true;
+                    break;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return retValue;
+    }
+
+    /*
+     * 책을 대출 또는 반납 상태로 설정
+     * true: 대출됨(반납 가능), false: 반납됨(대출 가능)
+     */
+    public void setBookStatus(String title, boolean val) {
+        try {
+            System.out.println("lend book " + title);
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("UPDATE book SET status = '"+val+"' where title='" + title + "'");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

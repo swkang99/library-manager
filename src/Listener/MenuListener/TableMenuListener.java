@@ -1,4 +1,4 @@
-package Listener.ActionListener;
+package Listener.MenuListener;
 
 import Windows.MainFrame;
 import Main.Database;
@@ -8,12 +8,12 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TableActionListener implements ActionListener {
+public class TableMenuListener implements ActionListener {
 
     private MainFrame mainWindow;
     private JTable table;
 
-    public TableActionListener(MainFrame mainWindow) {
+    public TableMenuListener(MainFrame mainWindow) {
         this.mainWindow = mainWindow;
         createTable();
     }

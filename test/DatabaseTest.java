@@ -17,6 +17,18 @@ class DatabaseTest {
     }
 
     @Test
+    void checkExistBookByIdTest() {
+        boolean ret = Database.getInstance().checkExistBookById(142);
+        assertEquals(true, ret);
+    }
+
+    @Test
+    void checkExistBookByIdInvalidTest() {
+        boolean ret = Database.getInstance().checkExistBookById(000);
+        assertEquals(false, ret);
+    }
+
+    @Test
     void checkMemberLoginTest() {
         boolean ret = Database.getInstance().checkMemberLogin("test", "1234");
         assertEquals(true, ret);

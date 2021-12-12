@@ -1,9 +1,6 @@
 package Windows;
 
-import Listener.ActionListener.AddBookActionListener;
-import Listener.ActionListener.LogInActionListener;
-import Listener.ActionListener.LogOutActionListener;
-import Listener.ActionListener.TableActionListener;
+import Listener.MenuListener.*;
 
 import javax.swing.*;
 
@@ -50,18 +47,24 @@ public class MainFrame extends JFrame {
         mb.add(memberMenu);
         mb.add(bookMenu);
 
-        LogInActionListener loginListener = new LogInActionListener();
+        LogInMenuListener loginListener = new LogInMenuListener();
         loginMenuItem.addActionListener(loginListener);
 
-        LogOutActionListener logoutListener = new LogOutActionListener(this);
+        LogOutMenuListener logoutListener = new LogOutMenuListener(this);
         logoutMenuItem.addActionListener(logoutListener);
 
-        TableActionListener tableListener = new TableActionListener(this);
+        TableMenuListener tableListener = new TableMenuListener(this);
         membersMenuItem.addActionListener(tableListener);
         booklistMenuItem.addActionListener(tableListener);
 
-        AddBookActionListener addBookActionListener = new AddBookActionListener();
-        addbookMenuItem.addActionListener(addBookActionListener);
+        AddBookMenuListener addBookMenuListener = new AddBookMenuListener();
+        addbookMenuItem.addActionListener(addBookMenuListener);
+
+        LendMenuListener lendListener = new LendMenuListener();
+        lendMenuItem.addActionListener(lendListener);
+
+        ReturnMenuListener returnListener = new ReturnMenuListener();
+        returnMenuItem.addActionListener(returnListener);
 
         setJMenuBar(mb);
     }

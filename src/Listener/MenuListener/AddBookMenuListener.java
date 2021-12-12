@@ -1,13 +1,13 @@
-package Listener.ActionListener;
+package Listener.MenuListener;
 
 import Dialog.AddBookDialog;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddBookActionListener implements ActionListener {
+public class AddBookMenuListener implements ActionListener {
 
-    public AddBookActionListener() {
+    public AddBookMenuListener() {
     }
 
     @Override
