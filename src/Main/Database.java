@@ -160,6 +160,20 @@ public class Database {
         return retValue;
     }
 
+    public boolean checkExistAuthors(String authors) {
+        boolean retValue = false;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT COUNT(*) FROM book WHERE authors='"+authors+"'");
+            if(rs.getInt(1) >= 1)
+                retValue = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return retValue;
+    }
+
     public void insertMemberJTable(JTable table) {
         try {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -252,12 +266,12 @@ public class Database {
 
     /*
      * 책을 예약
-     * title: 예약할 책 제목, name: 예약할 멤버 이름
+     * title: 예약할 책 제목, author: 예약할 책 작가 ,name: 예약할 멤버 이름
      */
-    public void reserveBook(String title, String name) {
+    public void reserveBook(String title, String author, String name) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT id FROM book WHERE title='"+title+"'");
+            ResultSet rs = statement.executeQuery("SELECT id FROM book WHERE title='"+title+"' AND authors='"+author+"'");
             int id = rs.getInt(1);
             statement.executeUpdate("UPDATE member SET resv_book_id = '"+id+"' WHERE name ='"+name+"'");
 

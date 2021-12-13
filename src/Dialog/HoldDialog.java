@@ -14,6 +14,7 @@ public class HoldDialog extends JDialog implements ActionListener {
 
     private JTextField titleTextField;
     private JTextField nameTextField;
+    private JTextField authorTextField;
 
     public HoldDialog() {
         setTitle("Hold Book");
@@ -30,7 +31,10 @@ public class HoldDialog extends JDialog implements ActionListener {
         panelCenter.add(new JLabel("title        "));
         titleTextField = new JTextField(20);
         panelCenter.add(titleTextField);
-        panelCenter.add(new JLabel("user name   "));
+        panelCenter.add(new JLabel("author       "));
+        authorTextField = new JTextField(20);
+        panelCenter.add(authorTextField);
+        panelCenter.add(new JLabel("user name    "));
         nameTextField = new JTextField(20);
         panelCenter.add(nameTextField);
 
@@ -58,22 +62,28 @@ public class HoldDialog extends JDialog implements ActionListener {
         if (e.getActionCommand().equals(Const.OK)) {
             final String title = titleTextField.getText();
             final String name = nameTextField.getText();
+            final String author = authorTextField.getText();
 
             if (Database.getInstance().checkExistBookByTitle(title)) {
-                if (Database.getInstance().checkExistName(name)) {
-                    int dialogResult = JOptionPane.showConfirmDialog(null,
-                            nameTextField.getText() + ", Would you like to Hold this book?",
-                            "Hold Books",
-                            JOptionPane.YES_NO_OPTION);
-                    if (dialogResult == JOptionPane.YES_OPTION) {
-                        // code here
-                        //Database.getInstance().setBookStatus(title, false);
-                        System.out.println("Holding func");
-                        Database.getInstance().reserveBook(title, name);
-                        dispose();
+                if (Database.getInstance().checkExistAuthors(author)) {
+                    if (Database.getInstance().checkExistName(name)) {
+                        int dialogResult = JOptionPane.showConfirmDialog(null,
+                                nameTextField.getText() + ", Would you like to Hold this book?",
+                                "Hold Books",
+                                JOptionPane.YES_NO_OPTION);
+                        if (dialogResult == JOptionPane.YES_OPTION) {
+                            // code here
+                            //Database.getInstance().setBookStatus(title, false);
+                            System.out.println("Holding func");
+                            Database.getInstance().reserveBook(title, author, name);
+                            dispose();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "wrong name member");
+
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "wrong name member");
+                    JOptionPane.showMessageDialog(null, "wrong author");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "wrong title");

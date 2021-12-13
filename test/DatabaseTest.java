@@ -18,7 +18,7 @@ class DatabaseTest {
 
     @Test
     void checkExistBookByIdTest() {
-        boolean ret = Database.getInstance().checkExistBookById(142);
+        boolean ret = Database.getInstance().checkExistBookById(93560);
         assertEquals(true, ret);
     }
 
@@ -49,6 +49,18 @@ class DatabaseTest {
     @Test
     void checkExistTableInvalidTest() {
         boolean ret = Database.getInstance().checkExistTable("tbale");
+        assertEquals(false, ret);
+    }
+
+    @Test
+    void checkExistAuthorsTest() {
+        boolean ret = Database.getInstance().checkExistAuthors("이재원");
+        assertEquals(true, ret);
+    }
+
+    @Test
+    void checkExistAuthorsInvalidTest() {
+        boolean ret = Database.getInstance().checkExistAuthors("노재원");
         assertEquals(false, ret);
     }
 }
