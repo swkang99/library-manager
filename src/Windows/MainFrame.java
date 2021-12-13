@@ -1,6 +1,6 @@
 package Windows;
 
-import Listener.MenuListener.*;
+import Listener.*;
 
 import javax.swing.*;
 
@@ -65,6 +65,9 @@ public class MainFrame extends JFrame {
 
         ReturnMenuListener returnListener = new ReturnMenuListener();
         returnMenuItem.addActionListener(returnListener);
+
+        HoldMenuListener holdListener = new HoldMenuListener();
+        holdMenuItem.addActionListener(holdListener);
 
         setJMenuBar(mb);
     }

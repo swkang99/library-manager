@@ -1,6 +1,6 @@
 package Windows;
 
-import Listener.ButtonListener.LoginButtonListener;
+import Listener.LoginButtonListener;
 import Main.Const;
 
 import javax.swing.*;

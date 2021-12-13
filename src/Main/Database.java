@@ -249,4 +249,21 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    /*
+     * 책을 예약
+     * title: 예약할 책 제목, name: 예약할 멤버 이름
+     */
+    public void reserveBook(String title, String name) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT id FROM book WHERE title='"+title+"'");
+            int id = rs.getInt(1);
+            statement.executeUpdate("UPDATE member SET resv_book_id = '"+id+"' WHERE name ='"+name+"'");
+
+            System.out.println("reserve book");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
