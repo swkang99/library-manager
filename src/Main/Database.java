@@ -62,6 +62,7 @@ public class Database {
                                 + "(id INTEGER NOT NULL, "
                                 + "name STRING NOT NULL, "
                                 + "pwd STRING NOT NULL, "
+                                + "resv_book_id INTEGER, "
                                 + "PRIMARY KEY(ID AUTOINCREMENT))");
             }
             if( !checkExistTable("book") ) {
@@ -162,7 +163,7 @@ public class Database {
     public void insertMemberJTable(JTable table) {
         try {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
-            String[] header = { "id", "name", "password" };
+            String[] header = { "id", "name", "password", "resv_book_id" };
             model.setColumnIdentifiers(header);
             model.setRowCount(0);
 
@@ -170,10 +171,11 @@ public class Database {
 
             ResultSet rs = statement.executeQuery("SELECT * FROM member");
             while (rs.next()) {
-                String[] record = new String[3];
+                String[] record = new String[4];
                 record[0] = Integer.toString(rs.getInt("id"));
                 record[1] = rs.getString("name");
                 record[2] = rs.getString("pwd");
+                record[3] = rs.getString("resv_book_id");
 
                 model.addRow(record);
             }
@@ -202,7 +204,10 @@ public class Database {
                 record[4] = rs.getString("title");
                 record[5] = rs.getString("publisher");
                 record[6] = rs.getString("book_date");
-                record[7] = rs.getString("status");
+                if (rs.getString("status").equals("false"))
+                    record[7] = "대출 가능";
+                else if (rs.getString("status").equals("true"))
+                    record[7] = "대출중";
                 record[8] = rs.getString("regist_date");
 
                 model.addRow(record);
